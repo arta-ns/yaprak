@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "yaprak-delete"
-version = "0.1.1"
+name = "yaprak"
+version = "0.1.2"
 authors = [
   { name="N. Sertac Artan", email="artans.github@gmail.com" },
 ]
@@ -21,3 +21,4 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/arta-ns/yaprak"
 "Bug Tracker" = "https://github.com/arta-ns/yaprak/issues"
+"Documentation" = "https://github.com/arta-ns/yaprak/tree/main/src/yaprak/html/yaprak/index.html"
