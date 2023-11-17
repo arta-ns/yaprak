@@ -5,6 +5,7 @@
 import json        
 import os
 from abc import ABC, abstractmethod
+from sys import exit
 
 class Yaprak(ABC):
     """Base class for the yaprak package."""
@@ -166,6 +167,22 @@ class Yaprak(ABC):
     def setInFileList(self, fileList):
         self.__inFileList = fileList
 
+    def setInFileListFromIDs(self):
+        if 'inFileSuffix' in self.config:
+            self.__inFileList = setFileListFromIDs(self.config['IDs'],
+                                   suffix = self.config['inFileSuffix'])
+        else:
+            print("Error: Missing inFileSuffix in config file.")
+            exit()
+
+    def setOutFileListFromIDs(self):
+        if 'OutFileSuffix' in self.config:
+            self.__inFileList = setFileListFromIDs(self.config['IDs'],
+                                   suffix = self.config['outFileSuffix'])
+        else:
+            print("Error: Missing OutFileSuffix in config file.")
+            exit()
+
     def getInFileList(self):
         return self.__inFileList 
 
@@ -293,6 +310,22 @@ def fullPathFileList(config, type):
             fullPathFileListOutput = config[fileListName] 
         return fullPathFileListOutput 
 
+def setFileListFromIDs(IDs, suffix=None):
+    """
+        Given a list of ID, return a list of filenames with the suffix added.
+        
+        Args:
+            IDs (list): List of IDs.
+            suffix (str): Suffix string to be appended to IDs (Default: None)
+
+        Returns:
+            list: A list of filenames as strings.
+    """
+    file_list = []
+    for id in IDs:
+        file_list.append(''.join(filter(None,(id,suffix))))
+    return file_list
+
 def load_json_file(fileName):
     """
         Loads a json file as config 
@@ -325,4 +358,5 @@ def mkdir_p(path):
     os.makedirs(path)
     return 1
 
-
+IDs = ['1', '2', '3', '4']
+print(setFileListFromIDs(IDs, suffix = '-test.zip'))
