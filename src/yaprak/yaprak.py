@@ -176,7 +176,7 @@ class Yaprak(ABC):
             exit()
 
     def setOutFileListFromIDs(self):
-        if 'OutFileSuffix' in self.config:
+        if 'outFileSuffix' in self.config:
             self.__inFileList = setFileListFromIDs(self.config['IDs'],
                                    suffix = self.config['outFileSuffix'])
         else:
@@ -358,5 +358,3 @@ def mkdir_p(path):
     os.makedirs(path)
     return 1
 
-IDs = ['1', '2', '3', '4']
-print(setFileListFromIDs(IDs, suffix = '-test.zip'))
